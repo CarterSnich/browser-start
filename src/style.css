@@ -35,20 +35,62 @@ body {
 
 .info {
 	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	margin-left: 20px;
+	line-height: 0;
+	font-family: "Barlow", sans-serif;
+}
+.info > div {
+	display: flex;
 	justify-content: left;
 	flex-direction: column;
 	margin-left: 20px;
 	line-height: 0;
 	font-family: "Barlow", sans-serif;
 }
+
 #greeting {
 	font-size: 34px;
 	color: #dee3de;
 }
+
 #time {
 	font-size: 40px;
 	color: #6279b8;
 }
+
+.info > form {
+	display: flex;
+	flex-direction: row;
+	align-items: end;
+	gap: 0.75rem;
+
+	margin-right: 20px;
+}
+
+.info > form > input[type="search"],
+.info > form > button {
+	color: #d1dede;
+	font-family: "Barlow";
+	font-size: inherit;
+	font-weight: 400;
+	border: 2px solid #eafdf8a0;
+	background-color: #434c5ea0;
+	border-radius: 0.5rem;
+	padding: 0.75rem;
+}
+
+.info > form > input[type="search"] {
+	width: 40vw;
+}
+
+.info > form > button:hover {
+	color: #ebcb8b;
+	font-style: italic;
+}
+
 @media all and (max-width: 600px) {
 	.info {
 		justify-content: center;
@@ -57,6 +99,7 @@ body {
 		margin-top: 30px;
 	}
 }
+
 .lists {
 	flex-grow: 1;
 

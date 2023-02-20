@@ -1,3 +1,7 @@
+window.onload = function () {
+	document.querySelector("#input-search").focus();
+};
+
 let currentTimeOfDay;
 
 let worker = function () {
@@ -11,7 +15,7 @@ let worker = function () {
 		currentTimeOfDay = timeOfDay;
 		document.getElementById("timeOfDay").innerText = timeOfDay;
 	}
-}
+};
 
 worker();
 setInterval(worker, 1000);
