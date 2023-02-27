@@ -19,3 +19,11 @@ let worker = function () {
 
 worker();
 setInterval(worker, 1000);
+
+document.getElementById("search-engine").addEventListener("change", function (e) {
+	let queryUrl = this.value;
+	let brand = this.selectedOptions[0].innerText;
+
+	document.getElementById("input-search").placeholder = brand;
+	document.getElementById("search-form").action = queryUrl;
+});
