@@ -20,8 +20,14 @@
             <p id="time"></p>
             <h1 id="greeting">Good <span id="timeOfDay"></span>, snich.</h1>
         </div>
-        <form action="https://www.google.com/search" method="GET">
-            <input type="search" name="q" id="input-search" placeholder="Google">
+        <form id="search-form" action="https://www.google.com/search" method="GET">
+            <span>
+                <select id="search-engine">
+                    <option value="https://www.google.com/search">Google</option>
+                    <option value="https://www.duckduckgo.com">DuckDuckGo</option>
+                </select>
+                <input type="search" name="q" id="input-search" placeholder="Google">
+            </span>
             <button type="submit">Search</button>
         </form>
     </div>
@@ -42,13 +48,14 @@
             <p class="list_title" id="d">Dev</p>
             <a href="https://github.com/">Github</a>
             <a href="https://stackoverflow.com">Stack</a>
-            <a href="https://developer.mozilla.org">MDN Web Docs</a>
+            <a href="https://devdocs.io">DevDocs</a>
             <a href="https://www.arduino.cc/reference/en/">Arduino Reference</a>
         </div>
         <div class="linux">
             <p class="list_title" id="l">Linux</p>
             <a href="https://forum.manjaro.org/">Manjaro Community</a>
             <a href="https://wiki.archlinux.org/">Arch Wiki</a>
+            <a href="https://aur.archlinux.org/">AUR Home</a>
         </div>
     </div>
 </body>
