@@ -1,63 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>New Tab</title>
+		<!--
+		<link
+			rel="preload"
+			as="image"
+			href="ign_nordhills.png"
+		/>-->
+		<link rel="preload" href="style.css" as="style" />
+		<!--
+		<link
+			rel="preload"
+			href="barlow-v12-latin-regular.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>-->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Tab</title>
+		<link rel="stylesheet" href="style.css" />
+		<script type="text/javascript" src="script.js" defer></script>
+	</head>
 
-    <link rel="preload" as="image" href="ign_nordhills.png">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="barlow-v12-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+	<body>
+		<!-- bookmarks -->
+		<div id="bookmark-groups">
+			<div>
+				<div class="school">
+					<p class="list_title">School</p>
+					<a href="https://mail.google.com/mail/u/0/#inbox">
+						Personal Mail
+					</a>
+					<a href="https://mail.google.com/mail/u/1/#inbox">
+						School Mail
+					</a>
+					<a href="https://meet.google.com/landing?authuser=1">
+						Meet
+					</a>
+					<a href="https://classroom.google.com/u/1/"> Classroom </a>
+				</div>
+				<div class="watch">
+					<p class="list_title">Others</p>
+					<a href="https://youtube.com">YouTube</a>
+					<a href="https://music.youtube.com/">YouTube Music</a>
+					<a href="https://chat.openai.com/chat">ChatGPT</a>
+					<a href="https://steamunlocked.net/">STEAMUNLOCKED</a>
+				</div>
+				<div class="dev">
+					<p class="list_title">Dev</p>
+					<a href="https://github.com/">Github</a>
+					<a href="https://stackoverflow.com">Stackoverflow</a>
+					<a href="https://devdocs.io">DevDocs</a>
+					<a href="https://www.arduino.cc/reference/en/">
+						Arduino Reference
+					</a>
+				</div>
+				<div class="linux">
+					<p class="list_title">Linux</p>
+					<a href="https://forum.manjaro.org/">Manjaro Community</a>
+					<a href="https://wiki.archlinux.org/">Arch Wiki</a>
+					<a href="https://aur.archlinux.org/">AUR Home</a>
+				</div>
+			</div>
+		</div>
 
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="script.js" defer></script>
-</head>
+		<!-- search form -->
+		<form id="search-form" method="GET">
+			<div id="prompt-wrapper">
+				<span id="prompt">[jomar@snich-20369 ~]$</span>
+				<span
+					id="input-search"
+					class="empty"
+					contenteditable="true"
+					tabindex="-1"
+					placeholder="[@engine] [query]"
+				></span>
+				<span id="status">✔️</span>
+				<span id="time"></span>
+			</div>
+			<div id="prompt-response" class="d-none">
+				<div>> <span></span></div>
+				<div></div>
+			</div>
+		</form>
 
-<body>
-    <div class="info">
-        <div>
-            <p id="time"></p>
-            <h1 id="greeting">Good <span id="timeOfDay"></span>, snich.</h1>
-        </div>
-        <form id="search-form" action="https://www.google.com/search" method="GET">
-            <span>
-                <select id="search-engine">
-                    <option value="https://www.google.com/search">Google</option>
-                    <option value="https://www.duckduckgo.com">DuckDuckGo</option>
-                </select>
-                <input type="search" name="q" id="input-search" placeholder="Google">
-            </span>
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div class="lists">
-        <div class="other">
-            <p class="list_title" id="e">School</p>
-            <a href="https://mail.google.com/mail/u/0/#inbox">Personal Mail</a>
-            <a href="https://mail.google.com/mail/u/1/#inbox">School Mail</a>
-            <a href="https://meet.google.com/landing?authuser=1">Meet</a>
-            <a href="https://classroom.google.com/u/1/">Classroom</a>
-        </div>
-        <div class="watch">
-            <p class="list_title" id="w">Others</p>
-            <a href="https://www.youtube.com">YouTube</a>
-            <a href="https://chat.openai.com/chat">ChatGPT</a>
-        </div>
-        <div class="dev">
-            <p class="list_title" id="d">Dev</p>
-            <a href="https://github.com/">Github</a>
-            <a href="https://stackoverflow.com">Stack</a>
-            <a href="https://devdocs.io">DevDocs</a>
-            <a href="https://www.arduino.cc/reference/en/">Arduino Reference</a>
-        </div>
-        <div class="linux">
-            <p class="list_title" id="l">Linux</p>
-            <a href="https://forum.manjaro.org/">Manjaro Community</a>
-            <a href="https://wiki.archlinux.org/">Arch Wiki</a>
-            <a href="https://aur.archlinux.org/">AUR Home</a>
-        </div>
-    </div>
-</body>
-
+		<div id="neofetch" class="d-none">
+			<pre>
+██████████████████  ████████   snich@snich-20369 
+██████████████████  ████████   ----------------- 
+██████████████████  ████████   OS: Manjaro Linux x86_64 
+██████████████████  ████████   Host: Inspiron 5555 A12 
+████████            ████████   Kernel: 6.1.31-1-MANJARO 
+████████  ████████  ████████   Uptime: 13 hours, 7 mins 
+████████  ████████  ████████   Packages: 1846 (pacman) 
+████████  ████████  ████████   Shell: zsh 5.9 
+████████  ████████  ████████   Resolution: 1366x768 
+████████  ████████  ████████   DE: Plasma 5.27.4 
+████████  ████████  ████████   WM: KWin 
+████████  ████████  ████████   WM Theme: Oxygen 
+████████  ████████  ████████   Theme: GraphiteNordDark [Plasma], Monochrome [GTK2/3] 
+████████  ████████  ████████   Icons: [Plasma], Papirus-Dark [GTK2/3] 
+                               Terminal: kitty 
+                               CPU: AMD A10-8700P Radeon R6 4C+6G (4) @ 1.800GHz 
+                               GPU: AMD ATI Radeon R5/R6/R7 Graphics 
+                               Memory: 3112MiB / 7386MiB
+			</pre
+			>
+		</div>
+	</body>
 </html>
