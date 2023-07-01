@@ -4,88 +4,63 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>New Tab</title>
-		<!--
-		<link
-			rel="preload"
-			as="image"
-			href="ign_nordhills.png"
-		/>-->
-		<link rel="preload" href="style.css" as="style" />
-		<!--
-		<link
-			rel="preload"
-			href="barlow-v12-latin-regular.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin
-		/>-->
-
+		<link rel="preload" href="style.css" />
 		<link rel="stylesheet" href="style.css" />
 		<script type="text/javascript" src="script.js" defer></script>
 	</head>
 
 	<body>
-		<!-- bookmarks -->
+		<!-- BOOKMARKS -->
 		<div id="bookmark-groups">
 			<div>
 				<div class="school">
-					<p class="list_title">School</p>
-					<a href="https://mail.google.com/mail/u/0/#inbox">
-						Personal Mail
-					</a>
-					<a href="https://mail.google.com/mail/u/1/#inbox">
-						School Mail
-					</a>
-					<a href="https://meet.google.com/landing?authuser=1">
-						Meet
-					</a>
-					<a href="https://classroom.google.com/u/1/"> Classroom </a>
+					<p class="list_title">school</p>
+					<a href="https://mail.google.com/mail/u/0/#inbox">personal mail</a>
+					<a href="https://mail.google.com/mail/u/1/#inbox">school mail</a>
+					<a href="https://meet.google.com/landing?authuser=1">meet</a>
+					<a href="https://classroom.google.com/u/1/">classroom</a>
 				</div>
 				<div class="watch">
-					<p class="list_title">Others</p>
-					<a href="https://youtube.com">YouTube</a>
-					<a href="https://music.youtube.com/">YouTube Music</a>
-					<a href="https://chat.openai.com/chat">ChatGPT</a>
-					<a href="https://steamunlocked.net/">STEAMUNLOCKED</a>
+					<p class="list_title">others</p>
+					<a href="https://youtube.com">youtube</a>
+					<a href="https://music.youtube.com/">yt music</a>
+					<a href="https://chat.openai.com/chat">chatgpt</a>
+					<a href="https://steamunlocked.net/">steamunlocked</a>
 				</div>
 				<div class="dev">
-					<p class="list_title">Dev</p>
-					<a href="https://github.com/">Github</a>
-					<a href="https://stackoverflow.com">Stackoverflow</a>
-					<a href="https://devdocs.io">DevDocs</a>
-					<a href="https://www.arduino.cc/reference/en/">
-						Arduino Reference
-					</a>
+					<p class="list_title">dev</p>
+					<a href="https://github.com/">github</a>
+					<a href="https://stackoverflow.com">stackoverflow</a>
+					<a href="https://devdocs.io">devdocs</a>
+					<a href="https://www.arduino.cc/reference/en/">arduino reference</a>
 				</div>
 				<div class="linux">
-					<p class="list_title">Linux</p>
-					<a href="https://forum.manjaro.org/">Manjaro Community</a>
-					<a href="https://wiki.archlinux.org/">Arch Wiki</a>
-					<a href="https://aur.archlinux.org/">AUR Home</a>
+					<p class="list_title">linux</p>
+					<a href="https://forum.manjaro.org/">manjaro community</a>
+					<a href="https://wiki.archlinux.org/">arch wiki</a>
+					<a href="https://aur.archlinux.org/">aur home</a>
 				</div>
 			</div>
 		</div>
 
-		<!-- search form -->
-		<form id="search-form" method="GET">
+		<!-- CONSOLE -->
+		<div id="console" method="GET">
 			<div id="prompt-wrapper">
-				<span id="prompt">[jomar@snich-20369 ~]$</span>
-				<span
-					id="input-search"
-					class="empty"
-					contenteditable="true"
-					tabindex="-1"
-					placeholder="[@engine] [query]"
-				></span>
-				<span id="status">✔️</span>
-				<span id="time"></span>
+				<div id="prompt">
+					<span id="left">[snich@snich-20369 ~]</span>
+					<span id="status">✔️</span>
+					<span id="time"></span>
+				</div>
+				<div id="console-input" contenteditable></div>
 			</div>
+
 			<div id="prompt-response" class="d-none">
-				<div>> <span></span></div>
+				<div>&gt; <span></span></div>
 				<div></div>
 			</div>
-		</form>
+		</div>
 
+		<!-- NEOFETCH -->
 		<div id="neofetch" class="d-none">
 			<pre>
 ██████████████████  ████████   snich@snich-20369 
@@ -106,7 +81,7 @@
                                CPU: AMD A10-8700P Radeon R6 4C+6G (4) @ 1.800GHz 
                                GPU: AMD ATI Radeon R5/R6/R7 Graphics 
                                Memory: 3112MiB / 7386MiB
-			</pre
+           </pre
 			>
 		</div>
 	</body>

@@ -24,23 +24,38 @@ const SEARCH_ENGINES = {
 		query_link: "https://steamunlocked.net/",
 		param_name: "s",
 	},
+	pornhub: {
+		name: "PornHub",
+		query_link: "https://www.pornhub.com/video/search",
+		param_name: "search",
+	},
 };
 
-const searchForm = document.getElementById("search-form");
-const inputSearch = document.getElementById("input-search");
+document.getElementById("console-input").addEventListener("keydown", function (e) {
+	if (e.key == "Enter") {
+		e.preventDefault();
+		console.dir(this.innerText);
+	}
+});
+
+const console = document.getElementById("console");
+const consoleInput = document.getElementById("console-input");
 const promptWrapper = document.getElementById("prompt-wrapper");
 const promptResponse = document.getElementById("prompt-response");
-const promptSummary = document.querySelector(
-	"#prompt-response>div:nth-child(1)>span"
-);
+const promptSummary = document.querySelector("#prompt-response>div:nth-child(1)>span");
 const promptResponseText = promptResponse.children[1];
-
 const status = document.getElementById("status");
 const time = document.getElementById("time");
-
 const neofetch = document.getElementById("neofetch");
 
-inputSearch.focus();
+consoleInput.focus();
+
+document.querySelector("body").addEventListener("keypress", function (e) {
+	if (e.key === "/") {
+		e.preventDefault();
+		consoleInput.focus();
+	}
+});
 
 time.innerText = new Date().toLocaleTimeString([], {
 	hour: "2-digit",
@@ -49,12 +64,12 @@ time.innerText = new Date().toLocaleTimeString([], {
 	hour12: false,
 });
 
-searchForm.addEventListener("click", function (e) {
+console.addEventListener("click", function (e) {
 	e.stopPropagation();
 	inputSearch.focus();
 });
 
-inputSearch.addEventListener("keydown", function (e) {
+consoleInput.addEventListener("keydown", function (e) {
 	if (e.keyCode == 13) {
 		e.preventDefault();
 
@@ -70,49 +85,43 @@ inputSearch.addEventListener("keydown", function (e) {
 		// get the search engine option
 		const engineMatch = this.innerText.match(/^@(\w+)/);
 		if (!engineMatch) {
-			setPromptResponse(
-				this.innerText,
-				"search engine: missing search engine option"
-			);
+			setPromptResponse(this.innerText, "search engine: missing search engine option");
 			return;
 		}
 
 		// get the search engine
 		const engine = SEARCH_ENGINES[engineMatch[1]];
 		if (!engine) {
-			setPromptResponse(
-				this.innerText,
-				`search engine: not found: ${engineMatch[1]}`
-			);
-			clearPromptResponse();
+			setPromptResponse(this.innerText, `search engine: not found: ${engineMatch[1]}`);
 			return;
 		}
 
 		// get the search query
 		const query = this.innerText.replace(/^@(\w+)\s?/, "");
 		if (!query) {
-			setPromptResponse(
-				this.innerText,
-				"search engine: missing search query option"
-			);
+			setPromptResponse(this.innerText, "search engine: missing search query option");
 			return;
 		}
 
 		if (e.ctrlKey) {
-			window.open(
-				`${engine.query_link}?${engine.param_name}=${query}`,
-				"_blank"
-			);
+			window.open(`${engine.query_link}?${engine.param_name}=${query}`, "_blank");
 		} else {
 			window.location.href = `${engine.query_link}?${engine.param_name}=${query}`;
 		}
 	}
 });
 
-"mousedown mouseup keydown keyup".split(" ").forEach((e) => {
-	inputSearch.addEventListener(e, function () {
-		console.log(getCaretPosition(this));
-	});
+consoleInput.addEventListener("keyup", function (e) {
+	let suggestions = "";
+	if (consoleInput.innerText && consoleInput.innerHTML.match(/^@(\w+)/)) {
+		Object.keys(SEARCH_ENGINES).forEach((eng) => {
+			let match = eng.match(consoleInput.innerText.replace("@", ""));
+			if (match) {
+				suggestions += `${match.input}<br>`;
+			}
+		});
+	}
+	document.getElementById("suggestion").innerHTML = suggestions;
 });
 
 neofetch.addEventListener("click", function () {
@@ -136,32 +145,6 @@ function setPromptResponse(text, response) {
 		});
 		promptWrapper.classList.remove("d-none");
 		promptResponse.classList.add("d-none");
-		inputSearch.focus();
+		consoleInput.focus();
 	}, 3000);
-}
-
-function getCaretPosition(editableDiv) {
-	var caretPos = 0,
-		sel,
-		range;
-	if (window.getSelection) {
-		sel = window.getSelection();
-		if (sel.rangeCount) {
-			range = sel.getRangeAt(0);
-			if (range.commonAncestorContainer.parentNode == editableDiv) {
-				caretPos = range.endOffset;
-			}
-		}
-	} else if (document.selection && document.selection.createRange) {
-		range = document.selection.createRange();
-		if (range.parentElement() == editableDiv) {
-			var tempEl = document.createElement("span");
-			editableDiv.insertBefore(tempEl, editableDiv.firstChild);
-			var tempRange = range.duplicate();
-			tempRange.moveToElementText(tempEl);
-			tempRange.setEndPoint("EndToEnd", range);
-			caretPos = tempRange.text.length;
-		}
-	}
-	return caretPos;
 }

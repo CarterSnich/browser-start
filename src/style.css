@@ -40,9 +40,12 @@ body {
 	padding: 3.25rem;
 }
 
-#bookmark-groups {
-	flex-grow: 1;
+#bookmark-groups > div > div,
+#search-form > * {
+	animation: intro 2s forwards;
+}
 
+#bookmark-groups {
 	display: flex;
 	flex-direction: row;
 	font-size: x-large;
@@ -54,11 +57,12 @@ body {
 	margin: auto;
 	overflow: hidden;
 
-	background-color: #1a1a1aa0;
+	width: 100%;
+
+	background-color: #1a1a1a80;
+	backdrop-filter: blur(8px);
 	border: 2px solid var(--fg-1);
 	padding: 0.25rem;
-
-	animation: intro 2s forwards;
 }
 
 #bookmark-groups > div > div {
@@ -100,12 +104,14 @@ body {
 	animation: blink 0.35s forwards;
 }
 
-#search-form {
+#console {
+	flex-grow: 1;
 	margin-top: auto;
 	font-size: x-large;
 	color: inherit;
 
-	background-color: #1a1a1aa0;
+	background-color: #1a1a1a80;
+	backdrop-filter: blur(8px);
 	border: 2px solid var(--fg-1);
 	padding: 0.25rem;
 }
@@ -118,51 +124,12 @@ body {
 	width: 100%;
 }
 
-#prompt {
+#left {
 	white-space: nowrap;
 }
 
-#input-search {
-	position: relative;
-
-	color: inherit;
-	border: none;
-	background-color: transparent;
-	outline: none;
-	font-size: inherit;
-	width: fit-content;
-	caret-color: transparent;
-	white-space: nowrap;
-}
-
-#input-search.invalid {
-	color: #e6473b !important;
-}
-
-#input-search::after {
-	content: " ";
-	text-align: right;
-	color: red;
-	position: absolute;
-	top: 0;
-	right: -1rem;
-
-	height: 100%;
-	width: 1rem;
-	background-color: #a9a9ac;
-	align-self: stretch;
-	opacity: 0;
-}
-
-#prompt-wrapper > #status {
+#status {
 	margin-inline-start: auto;
-}
-
-#prompt-wrapper > #time {
-}
-
-#prompt-wrapper > #input-search:focus::after {
-	animation: cursor-animation 2s infinite;
 }
 
 #prompt-response > div:nth-child(1) {
@@ -171,6 +138,20 @@ body {
 
 #prompt-response > div:nth-child(1) > span {
 	color: #e6473b;
+}
+
+#console-input {
+	margin: 0;
+	outline: none;
+	caret-shape: underscore;
+}
+
+#console-input::before {
+	content: "$";
+}
+
+#input-search.invalid {
+	color: #e6473b !important;
 }
 
 #neofetch {
@@ -186,31 +167,17 @@ body {
 	background-color: #1a1a1a80;
 	backdrop-filter: blur(8px);
 	padding: 1.25rem;
+	border: 2px solid var(--fg-1);
 
 	font: inherit;
 }
 
 @keyframes intro {
 	0% {
-		height: 100%;
-		padding: 0;
-		width: 2px;
-		background-color: var(--fg-1);
+		filter: blur(8px);
 	}
-
-	50% {
-		min-height: 20%;
-		height: 40%;
-		padding: 0;
-		background-color: transparent;
-		width: 2px;
-	}
-
 	100% {
-		padding: 0.25rem;
-		min-height: 20%;
-		height: fit-content;
-		width: 100%;
+		filter: blur(0px);
 	}
 }
 
